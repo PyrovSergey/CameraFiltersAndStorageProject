@@ -10,6 +10,8 @@ import android.os.Bundle
 import android.provider.MediaStore
 import android.support.v4.content.ContextCompat
 import android.support.v7.app.AlertDialog
+import android.support.v7.widget.GridLayoutManager
+import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
 import android.widget.Toast
@@ -28,10 +30,16 @@ class MainActivity : MvpAppCompatActivity(), HeadView {
     @InjectPresenter
     lateinit var presenter: Presenter
 
+    lateinit var pictureAdapter: PictureAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         currentImage.setImageBitmap(presenter.getCurrentBitmap())
+        recyclerViewProcessedImages.setHasFixedSize(true)
+        recyclerViewProcessedImages.layoutManager = GridLayoutManager(this, 2)
+        pictureAdapter = PictureAdapter(presenter.getListOfSavedPaths() as MutableList<String>, presenter)
+        recyclerViewProcessedImages.adapter = pictureAdapter
         checkCurrentStateImage()
         checkCurrentStatePermission()
     }
@@ -74,9 +82,9 @@ class MainActivity : MvpAppCompatActivity(), HeadView {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        when(resultCode) {
+        when (resultCode) {
             Activity.RESULT_OK -> {
-                when(requestCode) {
+                when (requestCode) {
                     CONSTANT_REQUEST_IMAGE_CAPTURE -> {
                         firstTimeButton.visibility = View.INVISIBLE
                         cardViewImage.visibility = View.VISIBLE
@@ -158,5 +166,9 @@ class MainActivity : MvpAppCompatActivity(), HeadView {
         cardViewImage.visibility = View.VISIBLE
         firstTimeButton.visibility = View.INVISIBLE
         currentImage.setImageBitmap(bitmap)
+    }
+
+    override fun refreshAdapter() {
+        pictureAdapter.updateAdapter(presenter.getListOfSavedPaths())
     }
 }

@@ -3,9 +3,10 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/cardViewImageItem"
-    android:layout_width="160dp"
-    android:layout_height="160dp"
+    android:layout_width="180dp"
+    android:layout_height="180dp"
     android:layout_margin="6dp"
+    android:layout_gravity="center"
     card_view:cardCornerRadius="8dp"
     card_view:cardElevation="6dp">
 

@@ -43,6 +43,7 @@ internal object BitmapUtils {
         // Get the dimensions of the original bitmap
         val bmOptions = BitmapFactory.Options()
         bmOptions.inJustDecodeBounds = true
+
         BitmapFactory.decodeFile(imagePath, bmOptions)
         val photoW = bmOptions.outWidth
         val photoH = bmOptions.outHeight
