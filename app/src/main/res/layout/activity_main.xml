@@ -46,7 +46,7 @@
         card_view:layout_constraintTop_toTopOf="@+id/cardViewImage" />
 
     <Button
-        android:id="@+id/image_button_rotate"
+        android:id="@+id/imageButtonRotate"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -64,7 +64,7 @@
         card_view:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/image_button_invert_colors"
+        android:id="@+id/imageButtonInvertColors"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -83,7 +83,7 @@
         card_view:layout_constraintVertical_bias="0.525" />
 
     <Button
-        android:id="@+id/image_button_mirror_image"
+        android:id="@+id/imageButtonMirrorImage"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"

@@ -4,6 +4,8 @@ import android.graphics.Bitmap
 import com.arellomobile.mvp.InjectViewState
 import com.arellomobile.mvp.MvpPresenter
 import com.arellomobile.mvp.MvpView
+import com.arellomobile.mvp.viewstate.strategy.AddToEndSingleStrategy
+import com.arellomobile.mvp.viewstate.strategy.StateStrategyType
 import ru.pyrovsergey.cameraandfiltersproject.temporarydatabase.TemporaryDatabase
 import ru.pyrovsergey.cameraandfiltersproject.utils.BitmapUtils
 
@@ -13,9 +15,9 @@ class Presenter : MvpPresenter<HeadView>() {
         return TemporaryDatabase.currentBitmap
     }
 
-    fun setCurrentBitmap(bitmap: Bitmap) {
-        TemporaryDatabase.currentBitmap = bitmap
-    }
+//    fun setCurrentBitmap(bitmap: Bitmap) {
+//        TemporaryDatabase.currentBitmap = bitmap
+//    }
 
     fun getRotatePhoto() {
         TemporaryDatabase.currentBitmap = TemporaryDatabase.currentBitmap?.let { BitmapUtils.rotate(it) }
@@ -35,6 +37,12 @@ class Presenter : MvpPresenter<HeadView>() {
     fun checkStateImage() {
         TemporaryDatabase.currentBitmap?.let { viewState.setImageBitmapCurrentState(it) }
     }
+
+    fun showBitmapResult(imageBitmap: Bitmap) {
+        TemporaryDatabase.currentBitmap = imageBitmap
+        TemporaryDatabase.currentBitmap?.let { viewState.setImageBitmapResult(it) }
+    }
+
 }
 
 interface HeadView : MvpView {
